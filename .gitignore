@@ -6,3 +6,6 @@ change.log
 data/tile_map.ods
 firmware_fork_list.json
 src/my-ttgo-watch.ino.cpp
+
+#But not these files
+.pio/build/t-watch2019/firmware.bin
