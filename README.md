@@ -7,9 +7,9 @@
 </p>
 <hr/>
 
-# My-TTGO-Watch
+# My-TTGO-Watch-2019
 
-A GUI named hedge for smartwatch like devices based on ESP32. Currently support for T-Watch2020 (V1,V2,V3), T-Watch2021  (V1 and V2, no ota-updates), M5Paper, M5Core2, WT32-SC01 and native Linux support for testing.
+A GUI named hedge for smartwatch like devices based on ESP32. Support for T-Watch 2019 for @sharandac's great firmware.
 
 ## Features
 
