@@ -61,7 +61,7 @@
         #include <M5EPD.h>
     #elif defined( M5CORE2 )
         #include <M5Core2.h>
-    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #include <TTGO.h>
     #elif defined( LILYGO_WATCH_2021 )    
         #include <twatch2021_config.h>
@@ -80,7 +80,7 @@ void hardware_attach_lvgl_ticker( void ) {
 
     #else
         #if defined( M5PAPER )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #elif defined( WT32_SC01 )
         #endif
         tickTicker->attach_ms( 5, []() {
@@ -94,7 +94,7 @@ void hardware_attach_lvgl_ticker_slow( void ) {
 
     #else
         #if defined( M5PAPER )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #elif defined( WT32_SC01 )
         #endif
         tickTicker->attach_ms(250, []() {
@@ -108,7 +108,7 @@ void hardware_detach_lvgl_ticker( void ) {
 
     #else
         #if defined( M5PAPER )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #elif defined( WT32_SC01 )
         #endif
         tickTicker->detach();
@@ -154,7 +154,7 @@ void hardware_setup( void ) {
              * init M5Core2 hardware
              */
             M5.begin();
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             TTGOClass *ttgo = TTGOClass::getWatch();
             /**
              * lvgl init

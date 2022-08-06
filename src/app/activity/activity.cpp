@@ -30,6 +30,8 @@
     #ifdef M5PAPER
     #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
         #include <TTGO.h>
+	#elif defined( LILYGO_WATCH_2019 )
+        #include <TTGO.h>
     #endif
 #endif
 

@@ -41,6 +41,8 @@
         #else
             #define FIRMWARE_UPDATE_URL            "http://www.neo-guerillaz.de/ttgo-t-watch2021-v1.version.json"
         #endif
+    #elif defined( LILYGO_WATCH_2019 )
+        #define FIRMWARE_UPDATE_URL            "http://mesedigital.com/ttgo-t-watch2019.version.json"
     #elif defined( M5CORE2 )
         #define FIRMWARE_UPDATE_URL            "http://www.neo-guerillaz.de/m5stack-core2.version.json"
     #elif defined( WT32_SC01 )

@@ -43,6 +43,8 @@
             void execute_ir_cmd(InfraButton* config);
         #elif defined( LILYGO_WATCH_2021 )
             void IRController_setup( void );
+		#elif defined( LILYGO_WATCH_2019 )
+            void IRController_setup( void );
         #elif defined( WT32_SC01 )
             void IRController_setup( void );
         #else

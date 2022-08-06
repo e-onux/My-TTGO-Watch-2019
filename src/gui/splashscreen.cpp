@@ -36,6 +36,7 @@
     #elif defined( M5CORE2 )
     #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
     #elif defined( LILYGO_WATCH_2021 )
+    #elif defined( LILYGO_WATCH_2019 )
     #elif defined( WT32_SC01 )
     #else
         #error "not splashscreen pre hardware setup"
@@ -101,7 +102,7 @@ void splash_screen_stage_one( void ) {
     #else
         #ifdef M5PAPER
             framebuffer_refresh();
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             TTGOClass *ttgo = TTGOClass::getWatch();
             for( int bl = 0 ; bl < display_get_brightness() ; bl++ ) {
                 ttgo->bl->adjust( bl );
@@ -111,7 +112,7 @@ void splash_screen_stage_one( void ) {
             for( int bl = 0 ; bl < display_get_brightness() ; bl++ ) {
                 ledcWrite(0, bl );
                 delay(5);
-            }            
+            }             
         #endif
     #endif
 }
@@ -132,7 +133,7 @@ void splash_screen_stage_finish( void ) {
     #ifdef NATIVE_64BIT
     #else
         #ifdef M5PAPER
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             TTGOClass *ttgo = TTGOClass::getWatch();
 
             for( int bl = display_get_brightness() ; bl >= 0 ; bl-- ) {
@@ -143,7 +144,7 @@ void splash_screen_stage_finish( void ) {
             for( int bl = display_get_brightness() ; bl >= 0 ; bl-- ) {
                 ledcWrite(0, bl );
                 delay(5);
-            }   
+            }
         #endif
     #endif
     lv_obj_del( logo );

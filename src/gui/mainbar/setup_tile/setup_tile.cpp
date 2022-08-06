@@ -69,6 +69,8 @@ void setup_tile_setup( void ) {
         setup_tile_num[ tiles ] = mainbar_add_tile( 1 + tiles , 1, "setup tile", ws_get_mainbar_style() );
     #elif defined( LILYGO_WATCH_2021 )
         setup_tile_num[ tiles ] = mainbar_add_tile( 1 + tiles , 1, "setup tile", ws_get_mainbar_style() );
+    #elif defined( LILYGO_WATCH_2019 )
+        setup_tile_num[ tiles ] = mainbar_add_tile( 1 + tiles , 1, "setup tile", ws_get_mainbar_style() );
     #elif defined( WT32_SC01 )
         setup_tile_num[ tiles ] = mainbar_add_tile( 1 + tiles , 1, "setup tile", ws_get_mainbar_style() );
     #else

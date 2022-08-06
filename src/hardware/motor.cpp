@@ -28,10 +28,10 @@
 
 #else
     #ifdef M5PAPER
-    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #include <TTGO.h>
 
-        #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 )
+        #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             volatile int DRAM_ATTR motor_run_time_counter=0;
             hw_timer_t * timer = NULL;
             portMUX_TYPE DRAM_ATTR timerMux = portMUX_INITIALIZER_UNLOCKED;
@@ -152,7 +152,7 @@ void motor_setup( void ) {
                 log_e("Motor init: I2C device not found, error %d", err);
                 drv = NULL;    
             }     
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 ) 
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 )  || defined( LILYGO_WATCH_2019 )
             pinMode(MOTOR_PIN, OUTPUT);
             timer = timerBegin(0, 80, true);
             timerAttachInterrupt(timer, &onTimer, true);
@@ -182,7 +182,7 @@ bool motor_powermgm_event_cb( EventBits_t event, void *arg ) {
     #else
         #if defined( M5PAPER )
         #elif defined( LILYGO_WATCH_2020_V2 )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 ) || defined( LILYGO_WATCH_2019 )
             switch( event ) {
                 case POWERMGM_SILENCE_WAKEUP:   portENTER_CRITICAL(&timerMux);
                                                 motor_run_time_counter = 0;
@@ -223,7 +223,7 @@ void motor_vibe( int time, bool enforced ) {
     #else
         #if defined( M5PAPER )
 
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2021 ) || defined( LILYGO_WATCH_2019 )
             /*
             * set critical section
             */        

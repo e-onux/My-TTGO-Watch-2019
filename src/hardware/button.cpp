@@ -43,8 +43,11 @@ bool button_send_cb( EventBits_t event, void *arg );
         HotZone left_btn( 0, 240, 106, 300 );
         HotZone power_btn( 106, 240, 212, 300 );
         HotZone right_btn( 213, 240, 319, 300 );
-    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #include "pmu.h"
+        #if defined( LILYGO_WATCH_2019 ) 
+			#include <twatch2019_config.h>
+		#endif
         /**
          * special case: on ttgo watch 2020 the button is connected 
          * to the pmu
@@ -108,6 +111,9 @@ void button_setup( void ) {
             pinMode( BTN_1, INPUT_PULLUP );
             pinMode( BTN_2, INPUT );
             pinMode( BTN_3, INPUT );
+        #elif defined( LILYGO_WATCH_2019 ) 
+            pinMode( BTN_1, INPUT_PULLUP );
+            pmu_register_cb( PMUCTL_SHORT_PRESS | PMUCTL_LONG_PRESS, button_pmu_event_cb, "button pmu event" );
         #elif defined( WT32_SC01 )
 
         #endif
@@ -398,6 +404,41 @@ bool button_powermgm_loop_cb( EventBits_t event, void *arg ) {
 
             if ( refresh_button ) button_send_cb( BUTTON_REFRESH, (void*)NULL );
         }
+    #elif defined( LILYGO_WATCH_2019 ) 
+        static bool exit_button = digitalRead( BTN_1 );
+        static uint64_t exit_button_time = 0;
+        /**
+         * BTN_1 logic
+         */
+        if ( digitalRead( BTN_1 ) != exit_button ) {
+            exit_button = digitalRead( BTN_1 );
+
+            uint64_t press_time = 0;
+            if ( !exit_button ) {
+                exit_button_time = millis();
+            }
+            else {
+                press_time = millis() - exit_button_time;
+            }
+
+            if ( press_time != 0 ) {
+                /**
+                 * special case when we are in standby or silence wakeup
+                 */
+                if ( powermgm_get_event( POWERMGM_STANDBY ) || powermgm_get_event( POWERMGM_SILENCE_WAKEUP ) ){
+                    button_send_cb( BUTTON_PWR, (void *)NULL );
+                    powermgm_set_event( POWERMGM_WAKEUP_REQUEST );
+                }
+                else {
+                    if( press_time < 250 )
+                        button_send_cb( BUTTON_EXIT, (void *)NULL );
+                    else if ( press_time < 1000 )
+                        button_send_cb( BUTTON_PWR, (void *)NULL );                    
+                    else
+                        button_send_cb( BUTTON_QUICKBAR, (void *)NULL );
+                }
+            }
+        }
     #elif defined( WT32_SC01 )
     #endif
     /**
@@ -463,6 +504,29 @@ bool button_powermgm_event_cb( EventBits_t event, void *arg ) {
                                                     gpio_wakeup_enable( (gpio_num_t)BTN_1, GPIO_INTR_LOW_LEVEL );
                                                     gpio_wakeup_enable( (gpio_num_t)BTN_2, GPIO_INTR_LOW_LEVEL );
                                                     gpio_wakeup_enable( (gpio_num_t)BTN_3, GPIO_INTR_LOW_LEVEL );
+                                                    esp_sleep_enable_gpio_wakeup ();
+                                                    retval = true;
+                                                    break;
+                case POWERMGM_WAKEUP:               log_d("button wakeup");
+                                                    retval = true;
+                                                    break;
+                case POWERMGM_SILENCE_WAKEUP:       log_d("button silence wakeup");
+                                                    retval = true;
+                                                    break;
+                case POWERMGM_ENABLE_INTERRUPTS:    log_d("button enable interrupts");
+                                                    retval = true;
+                                                    break;
+                case POWERMGM_DISABLE_INTERRUPTS:   log_d("button disable interrupts");
+                                                    retval = true;
+                                                    break;
+            }
+        #elif defined( LILYGO_WATCH_2019 ) 
+            switch( event ) {
+                case POWERMGM_STANDBY:              log_d("button standby");
+                                                    /*
+                                                    * enable GPIO in lightsleep for wakeup
+                                                    */
+                                                    gpio_wakeup_enable( (gpio_num_t)BTN_1, GPIO_INTR_LOW_LEVEL );
                                                     esp_sleep_enable_gpio_wakeup ();
                                                     retval = true;
                                                     break;

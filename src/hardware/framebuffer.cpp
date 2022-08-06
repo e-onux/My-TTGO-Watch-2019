@@ -49,7 +49,7 @@
         #include <utility/In_eSPI.h>
 
         TFT_eSPI tft = TFT_eSPI();
-    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #include <TTGO.h>
     #elif defined( LILYGO_WATCH_2021 )
         #include "TFT_eSPI.h"
@@ -103,11 +103,11 @@ void framebuffer_setup( void ) {
             tft.setRotation(1);
             tft.setTextSize(1);
             tft.setTextColor(TFT_GREEN, TFT_BLACK);
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             /**
              * enable DMA only for V1 and V2
              */
-            #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 )
+            #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2019 )
                 framebuffer_use_dma = true;
             #endif
             /**
@@ -246,7 +246,7 @@ bool framebuffer_powermgm_loop_cb( EventBits_t event, void *arg ) {
                 }
             }
         #elif defined( M5CORE2 )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #elif defined( LILYGO_WATCH_2021 )
         #elif defined( WT32_SC01 )
         #else
@@ -272,7 +272,7 @@ void framebuffer_refresh( void ) {
             min_y = FRAMEBUFFER_BUFFER_H;
             max_y = 0;
         #elif defined( M5CORE2 )
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
         #elif defined( LILYGO_WATCH_2021 )
         #elif defined( WT32_SC01 )
         #else
@@ -359,7 +359,7 @@ static void framebuffer_flush_cb(lv_disp_drv_t *disp_drv, const lv_area_t *area,
             tft.setAddrWindow(area->x1, area->y1, (area->x2 - area->x1 + 1), (area->y2 - area->y1 + 1)); /* set the working window */
             tft.pushColors( ( uint16_t *)color_p, size );
             tft.endWrite();
-        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+        #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
             TTGOClass *ttgo = TTGOClass::getWatch();
             /**
              * get buffer size

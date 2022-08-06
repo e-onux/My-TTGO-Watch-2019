@@ -177,7 +177,7 @@ void gui_setup( void ) {
     style_settings_tile_setup();
     notify_settings_tile_setup();
     wlan_settings_tile_setup();
-    #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( M5CORE2 ) || defined( NATIVE_64BIT ) || defined( WT32_SC01 )
+    #if defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2019 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( M5CORE2 ) || defined( NATIVE_64BIT ) || defined( WT32_SC01 )
         touch_settings_tile_setup();
     #endif
     time_settings_tile_setup();

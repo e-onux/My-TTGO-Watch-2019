@@ -61,6 +61,13 @@
             #define ONLY_ESSENTIAL
             #define ROUND_DISPLAY
             #define NO_UPDATES
+        #elif defined( LILYGO_WATCH_2019 )
+            #define HARDWARE_NAME   "T-Watch2019"
+            #define RES_X_MAX       240
+            #define RES_Y_MAX       240
+            #define USE_PSRAM_ALLOC_LVGL                    /** @brief enabled LVGL to use PSRAM */ 
+            #define ENABLE_WEBSERVER                        /** @brief To disable built-in webserver, comment this line */
+            #define ENABLE_FTPSERVER                        /** @brief To disable built-in ftpserver, comment this line */
         #elif defined( M5PAPER )
             #define HARDWARE_NAME   "m5stack-fire"
             #define RES_X_MAX       540
@@ -100,7 +107,7 @@
         #ifdef NATIVE_64BIT
         #else
             #ifdef M5PAPER
-            #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+            #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 ) || defined( LILYGO_WATCH_2019 )
                 #include <LilyGoWatch.h>
             #endif
         #endif

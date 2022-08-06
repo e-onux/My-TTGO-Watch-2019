@@ -121,6 +121,7 @@
                 }
             }
         };
+    #elif defined( LILYGO_WATCH_2019 )
     #else // NEW_HARDWARE_TAG
     #endif
 #endif

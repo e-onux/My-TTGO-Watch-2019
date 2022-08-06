@@ -171,6 +171,7 @@
         "<li><a target=\"cont\" href=\"/shot\">/shot</a> - Capture a screen shot"
         "<li><a target=\"cont\" href=\"/screen.png\">/screen.png</a> - Retrieve the image in png format, open it with gimp"
         "<li><a target=\"_blank\" href=\"/edit\">/edit</a> - View, edit, upload, and delete files"
+        "<li><a target=\"_blank\" href=\"/temp\">/temp</a> - Temperature"
         "</ul>"
         "<p><div style=\"color:red;\">Caution:</div> Use these with care:"
         "<ul><li><a target=\"cont\"  href=\"/reset\">/reset</a> Reboot the device"
@@ -279,7 +280,7 @@
         }
         request->send(200, "text/html", html);
     });
-
+*/
     asyncserver.on("/temp", HTTP_GET, [](AsyncWebServerRequest *request) {
         TTGOClass * ttgo = TTGOClass::getWatch();
 
@@ -292,7 +293,7 @@
                     "</body></html>";
         request->send(200, "text/html", html);
     });
-    */
+    
     asyncserver.on("/network", HTTP_GET, [](AsyncWebServerRequest *request) {
         String html = (String) "<html><head><meta charset=\"utf-8\"></head><body><h3>Network</h3>" +
                     "<b>IP Addr: </b>" + WiFi.localIP().toString() + "<br>" +

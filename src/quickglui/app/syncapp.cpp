@@ -12,6 +12,7 @@
 #else
     #ifdef M5PAPER
     #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2019 )
     #endif
 #endif
 
@@ -20,6 +21,7 @@ SynchronizedApplication::SynchronizedApplication() {
     #else
         #ifdef M5PAPER
         #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+		#elif defined( LILYGO_WATCH_2019 )
         #endif
             syncEvent = xEventGroupCreate();
     #endif
@@ -49,6 +51,7 @@ SynchronizedApplication& SynchronizedApplication::synchronizeActionHandler(Synch
     #else
         #ifdef M5PAPER
         #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+		#elif defined( LILYGO_WATCH_2019 )
         #endif
         synchronize = onSynchronizeHandler;
     #endif
@@ -61,6 +64,7 @@ void SynchronizedApplication::startSynchronization(SyncRequestSource callSource)
 #else
     #ifdef M5PAPER
     #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+    #elif defined( LILYGO_WATCH_2019 )
     #endif
         if (xEventGroupGetBits(syncEvent) & SyncRequestSource::IsRequired)
         {
@@ -94,6 +98,7 @@ void SynchronizedApplication::onSyncRequest() {
     #else
         #ifdef M5PAPER
         #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+		#elif defined( LILYGO_WATCH_2019 )
         #endif
         log_i("start %s, heap: %d", title.c_str(), ESP.getFreeHeap());
 
@@ -119,6 +124,7 @@ void SynchronizedApplication::SyncTaskHandler(void* pvSelf) {
     #else
         #ifdef M5PAPER
         #elif defined( LILYGO_WATCH_2020_V1 ) || defined( LILYGO_WATCH_2020_V2 ) || defined( LILYGO_WATCH_2020_V3 )
+		#elif defined( LILYGO_WATCH_2019 )
         #endif
         log_i("SyncTaskHandler: %d", pvSelf);
         auto self = (SynchronizedApplication*)pvSelf;

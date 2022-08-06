@@ -32,14 +32,14 @@
     class mail_config_t : public BaseJsonConfig {
         public:
         mail_config_t();
-        char imap_server[128] = "";                 /** @brief gps auto on/off */
+        char imap_server[128] = "imap.gmail.com";                 /** @brief gps auto on/off */
         uint32_t imap_port = 993;                   /** @brief enable gps on standby */
         bool use_ssl = true;                        /** @brief wifi auto on/off */
         char inbox_folder[128] = "INBOX";           /** @brief osm map name */
         uint32_t max_msg = 5;                       /** @brief max mail to fetch */
         uint32_t max_msg_size = 512;                /** @brief max mail buffer size to fetch */
-        char username[128] = "";                    /** @brief load ahead on/off */
-        char password[128] = "";                    /** @brief left/right hand icons, false mean left hand */
+        char username[128] = "YOURUSERNAME";                    /** @brief load ahead on/off */
+        char password[128] = "YOURPASSWORD";                    /** @brief left/right hand icons, false mean left hand */
 
         protected:
         ////////////// Available for overloading: //////////////
