@@ -9,3 +9,4 @@ src/my-ttgo-watch.ino.cpp
 
 #But not these files
 !.pio/build/t-watch2019/firmware.bin
+!.pio/build/t-watch2019/firmware.bin
